@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Showcase - Our Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        /* Header */
+        header {
+            background: #16213e;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #0f4c75;
+            font-size: 32px;
+        }
+
+        header p {
+            color: #bbb;
+            margin-top: 5px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #3bb4c1;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #aaa;
+            margin-bottom: 60px;
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        /* Project Card */
+        .project-card {
+            background: #16213e;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #0f4c75;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(59, 180, 193, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #0f4c75, #3bb4c1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .project-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .project-body {
+            padding: 30px;
+        }
+
+        .project-body h3 {
+            color: #3bb4c1;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .project-body p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a3e;
+            color: #bbb;
+        }
+
+        .features-list li:before {
+            content: "✓ ";
+            color: #3bb4c1;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .project-footer {
+            padding: 0 30px 30px 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #3bb4c1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2a8d99;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: #0f4c75;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0a3556;
+            transform: scale(1.05);
+        }
+
+        /* Add Project Section */
+        .add-project-section {
+            background: #16213e;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            border: 2px dashed #0f4c75;
+            margin-top: 40px;
+        }
+
+        .add-project-section h3 {
+            color: #3bb4c1;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .add-project-section p {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .add-btn {
+            background: #3bb4c1;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #2a8d99;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1b2a;
+            padding: 30px;
+            text-align: center;
+            margin-top: 80px;
+            color: #777;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .project-footer {
+                flex-direction: column;
+            }
+        }
+
+        /* Instructions Box */
+        .instructions {
+            background: #2a2a3e;
+            border-left: 4px solid #3bb4c1;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+
+        .instructions h3 {
+            color: #3bb4c1;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .code-example {
+            background: #0d1b2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+
+        .code-example code {
+            color: #3bb4c1;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Software Showcase</h1>
+        <p>Collection of our amazing projects</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1 class="page-title">Our Projects</h1>
+        <p class="page-subtitle">Explore the software we've built</p>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>How to Add Your Friend's Software:</h3>
+            <p>Copy the project card template below and fill in your friend's software details. Just duplicate the "project-card" div and edit the content!</p>
+            <div class="code-example">
+                <code>
+                    &lt;div class="project-card"&gt;<br>
+                    &nbsp;&nbsp;&lt;!-- Edit the content here --&gt;<br>
+                    &lt;/div&gt;
+                </code>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            
+            <!-- PROJECT 1: Animation Software -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h2>Animation Studio</h2>
+                    <span class="project-tag">Python • PyQt5</span>
+                </div>
+                <div class="project-body">
+                    <h3>About</h3>
+                    <p>Professional 3D animation software with keyframe animation, timeline editor, and brightness controls. Create smooth animations with ease!</p>
+                    
+                    <h3>Features</h3>
+                    <ul class="features-list">
+                        <li>3D sphere objects with gradient shading</li>
+                        <li>Keyframe animation system</li>
+                        <li>Draggable timeline bar</li>
+                        <li>Brightness control (0-200%)</li>
+                        <li>Save and load animations</li>
+                        <li>Adjustable FPS playback</li>
+                    </ul>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-primary" onclick="downloadProject('animation')">Download</button>
+                    <button class="btn btn-secondary" onclick="viewDemo('animation')">View Demo</button>
+                </div>
+            </div>
+
+            <!-- PROJECT 2: Your Friend's Software - TEMPLATE -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h2>Friend's Software Name</h2>
+                    <span class="project-tag">Technology Used</span>
+                </div>
+                <div class="project-body">
+                    <h3>About</h3>
+                    <p>Description of your friend's software goes here. Explain what it does and why it's awesome!</p>
+                    
+                    <h3>Features</h3>
+                    <ul class="features-list">
+                        <li>Feature 1 description</li>
+                        <li>Feature 2 description</li>
+                        <li>Feature 3 description</li>
+                        <li>Feature 4 description</li>
+                        <li>Feature 5 description</li>
+                    </ul>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-primary" onclick="downloadProject('friend')">Download</button>
+                    <button class="btn btn-secondary" onclick="viewDemo('friend')">View Demo</button>
+                </div>
+            </div>
+
+            <!-- PROJECT 3: Another Project - TEMPLATE -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h2>Another Project</h2>
+                    <span class="project-tag">Tech Stack</span>
+                </div>
+                <div class="project-body">
+                    <h3>About</h3>
+                    <p>Add another project here! Just copy this entire project-card div to add more projects.</p>
+                    
+                    <h3>Features</h3>
+                    <ul class="features-list">
+                        <li>Cool feature 1</li>
+                        <li>Amazing feature 2</li>
+                        <li>Awesome feature 3</li>
+                    </ul>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-primary" onclick="downloadProject('other')">Download</button>
+                    <button class="btn btn-secondary" onclick="viewDemo('other')">View Demo</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Add More Projects Section -->
+        <div class="add-project-section">
+            <h3>Want to Add More Projects?</h3>
+            <p>Edit the HTML file and copy the project card template above. Change the title, description, features, and links!</p>
+            <button class="add-btn" onclick="showInstructions()">Show Instructions</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Software Showcase. All projects created by our team.</p>
+        <p style="margin-top: 10px; font-size: 14px;">Built with HTML, CSS, and JavaScript</p>
+    </footer>
+
+    <script>
+        // Download functionality
+        function downloadProject(projectName) {
+            switch(projectName) {
+                case 'animation':
+                    alert('Animation Studio Download:\n\n1. Save animation_software.py\n2. Install PyQt5: pip install PyQt5\n3. Run: python animation_software.py\n\nThe file was provided in your downloads!');
+                    break;
+                case 'friend':
+                    alert('Add your friend\'s download link here!\n\nEdit the downloadProject() function in the HTML file.');
+                    break;
+                case 'other':
+                    alert('Add download instructions here!');
+                    break;
+            }
+        }
+
+        // Demo functionality
+        function viewDemo(projectName) {
+            switch(projectName) {
+                case 'animation':
+                    alert('Animation Studio Demo:\n\nRun the software to see:\n• Drag objects around\n• Add keyframes\n• Animate with timeline\n• Adjust brightness');
+                    break;
+                case 'friend':
+                    alert('Add your friend\'s demo link or instructions here!');
+                    break;
+                case 'other':
+                    alert('Add demo information here!');
+                    break;
+            }
+        }
+
+        // Show instructions
+        function showInstructions() {
+            alert('HOW TO ADD MORE PROJECTS:\n\n1. Find the project-card div in the HTML\n2. Copy the entire <div class="project-card">...</div>\n3. Paste it below the last project\n4. Edit these fields:\n   • Project name\n   • Technology tag\n   • Description\n   • Features list\n   • Button actions\n\n5. Save and refresh the page!\n\nTip: You can add unlimited projects this way!');
+        }
+
+        // Smooth scroll animation on load
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = 'fadeIn 0.6s ease-out';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
